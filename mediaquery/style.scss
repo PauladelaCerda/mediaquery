@@ -1,0 +1,383 @@
+
+$small: "576px";
+$medium: "768px";
+$large: "992px";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+//version celular
+.dashboard {
+    display: grid;
+    grid-template-areas:
+    "header"
+    "aside"
+    "main"
+    "right"
+    "footer";
+    grid-template-rows: 100px 100px 1fr 100px;
+    
+    header {
+        grid-area: header;
+        background-color:  rgb(233, 196, 106);
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            height: max-content;
+            .brand {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                
+                h1{
+                    font-size: 20px;
+                    font-weight: 900;
+                  
+                }
+                figure{
+                    width: 150px;  
+                    img {
+                        width: 100%;
+                        object-fit: contain;
+                        margin-top: 0%
+                    }
+                }
+            }
+        }
+    }
+
+    aside {
+        grid-area: aside;
+        background-color: rgb(42, 157, 143);
+        justify-content: center;
+        align-items: center;
+        text-align: center; 
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        .filtro {
+            padding:0px 20px 0px 20px;
+            display: inline-block;
+            margin-top: 10px;
+            height: max-content;
+            width: 100%;
+            select{
+                width:100%;
+                height: 30px;
+            }
+        }
+    }
+
+    main {
+        grid-area: main;
+        background-color: rgb(42, 157, 143);
+        color: black;
+        text-align: center;
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(38, 70, 83);
+            color: white;
+            height: 50px;
+            &:hover
+            {
+                background-color: rgb(233, 196, 106);
+                cursor: pointer;
+            }
+        }
+    }
+
+    //numeros de pagina
+    right{
+        grid-area: right;
+        background-color: #f4a261;
+        justify-content: center;
+        align-items: center;
+        text-align: center; 
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        .page-number.active {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+        }
+        .page-numbers {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px; 
+            background-color: rgb(244, 162, 97);
+            margin-top: 0%;
+            .page-number {
+                margin: 0 5px;
+                padding: 5px 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .page-number, .arrow {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .arrow {
+            font-size: 20px;
+        }
+        .arrow.left::before {
+            content: '\2190'; 
+        }
+        .arrow.right::before {
+            content: '\2192'; 
+        }
+    }
+
+
+    footer {
+        grid-area: footer; 
+        justify-content: center;
+        background-color: rgb(244, 162, 97); 
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-direction: column;
+        color: white;
+        .iconos{
+            display: flex;
+            justify-content: center;
+            margin-top: 10px; 
+            background-color: rgb(244, 162, 97);
+            margin-top: 0%;
+            width: 100%;
+            gap: 10px;
+        }
+        .texto_derechos{
+            display: flex;
+            justify-content: center;
+            margin-top: 10px; 
+            background-color:rgb(38, 70, 83) ;
+            margin-top: 0%;
+            width: 100%;
+        }
+
+    }
+}
+
+//version de escritorio
+@media (min-width: $small) {
+    .dashboard {
+        grid-template-areas: 
+        "header aside aside aside aside"
+        "header main main main main"
+        "footer right right right right";
+        grid-template-rows: 100px 1fr 100px;
+        grid-template-columns: 280px;
+        header{
+            grid-area: header;
+            height: 100vh;
+            nav{
+                .brand {
+                    figure {
+                        width: 100px;
+                        max-width: fit-content;
+                    }
+                }
+                .icon {
+                    display: none;
+                }
+            }
+            .categoria {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                h3 {
+                    margin-top: 30px;
+                }
+                p {
+                    &:hover {
+                        background-color: rgb(233, 196, 106);
+                    }         
+                    cursor: pointer;
+                }
+            }
+        }
+
+        aside {
+            grid-area: aside;
+            background-color: rgb(42, 157, 143);
+            justify-content: center;
+            align-items: center;
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            .filtro {
+                display: inline-block;
+                margin-top: 10px;
+            }
+            
+        }
+
+        main {
+            grid-area: main;
+            background: rgb(231, 111, 81) ;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            flex-direction: column;
+            align-items: center;
+            .card-container {
+                display: flex;
+                flex-direction: column;
+                background-color:rgb(244, 162, 97);
+                margin-bottom: 15px;
+                .card-header {
+                    min-height: 10px;
+                    color: rgb(232, 106, 51);
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    margin-top: 10px;
+                }
+                .card-body {
+                    min-height: 120px;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    align-items: center;
+                    transition: all 1s ease-in-out;
+                    overflow: hidden;
+                    &:hover{
+                        img{
+                            transform: scale(1.1);
+                            background-color:rgb(42, 157, 143) ;
+                            transition: transform 1s ease-in-out;
+                        }
+                    }
+                    img {
+                        height: 200px;
+                        max-width: fit-content;
+                        max-height: fit-content;
+                        border-radius: 15px;
+                        padding: 20px;
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+                .card-footer {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color:rgb(42, 157, 143) ;
+                    color: white;
+                    height: 50px;
+                    &:hover {
+                        background-color: rgb(38, 70, 83);
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        
+        //numeros de pagina
+        right{
+            grid-area: right;
+            background-color: rgb(31, 138, 112);
+            justify-content: center;
+            align-items: center;
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            .page-number.active {
+                background-color: #007BFF;
+                color: #fff;
+                border: none;
+            }
+            .page-numbers {
+                display: flex;
+                justify-content: center;
+                margin-top: 10px; 
+                background-color: rgb(31, 138, 112);
+                margin-top: 0%;
+                .page-number {
+                    margin: 0 5px;
+                    padding: 5px 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+            .pagination {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .page-number, .arrow {
+                display: inline-block;
+                margin: 0 5px;
+                padding: 5px 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .arrow {
+                font-size: 20px;
+            }
+            .arrow.left::before {
+                content: '\2190'; 
+            }
+            .arrow.right::before {
+                content: '\2192'; 
+            }
+        }
+
+        footer {
+            grid-area: footer; 
+            justify-content: center;
+            background-color: rgb(231, 111, 81); 
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-direction: column;
+            .iconos{
+                display: flex;
+                justify-content: center;
+                margin-top: 10px; 
+                background-color: rgb(231, 111, 81);
+                margin-top: 0%;
+                width: 100%;
+                gap: 10px;
+            }
+            .texto_derechos{
+                display: flex;
+                justify-content: center;
+                margin-top: 10px; 
+                background-color: rgb(231, 111, 81);
+                margin-top: 0%;
+                width: 100%;
+            }
+
+        }
+    }
+}
